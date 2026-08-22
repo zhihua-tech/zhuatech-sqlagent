@@ -1,4 +1,4 @@
-/* Copyright 2026 上海如静知华信息科技有限公司 */
+/* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 package cn.zhuatech.sqlagent.service;
 import cn.zhuatech.sqlagent.common.BusinessException; import cn.zhuatech.sqlagent.dto.SqlAgentDto.*; import cn.zhuatech.sqlagent.model.*; import cn.zhuatech.sqlagent.repository.*; import org.springframework.stereotype.Service; import org.springframework.transaction.annotation.Transactional; import java.util.*;
 @Service @Transactional(readOnly=true) public class SqlAgentService {

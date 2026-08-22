@@ -1,4 +1,4 @@
-/* Copyright 2026 上海如静知华信息科技有限公司 */
+/* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 export const domain={
  code:'SQLAGENT',systemName:'知华数据查询智能体',englishName:'ENTERPRISE SQL AGENT',theme:{primary:'#245b82',dark:'#172d3e',accent:'#c4873b'},
  workspace:'集团数据平台 / 查询治理组',fieldWorkspace:'经营分析域 / 数据服务台',period:'2026-08-17 · 实时治理',liveText:'元数据于 14:26 更新',fieldContextLabel:'当前数据域',fieldContext:'经营分析 · 只读环境',fieldUser:'林峤',fieldRole:'数据分析师',adminUser:'许澄',adminRole:'数据平台主管',
