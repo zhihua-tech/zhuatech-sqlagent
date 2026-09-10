@@ -11,5 +11,6 @@
 | POST | `/api/shopfloor/work-orders/{id}/reports` | 提交查询反馈 |
 | POST | `/api/ai/sql/plan` | 生成 SQL 预览、风险和控制措施 |
 | POST | `/api/shopfloor/ai-risk-assessment` | AI 上线风险初筛 |
+| POST | `/api/enterprise/sqlagent/execution-policy` | 校验候选 SQL 的权限、租户、成本和结果限制 |
 
 除登录外均需 Bearer Token。`/api/ai/sql/plan` 接受数据源、问题、候选表、预计扫描行数、敏感标记、写意图和结果限制；社区版不连接真实数据库。

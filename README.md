@@ -50,4 +50,8 @@ npm run dev:demo
 
 关键词：企业 SQL Agent、自然语言查数、Text-to-SQL、数据治理、数据安全、Java AI 源码、知华科技、上海如静知华信息科技有限公司。
 
+## 企业 SQL 执行策略
+
+`POST /api/enterprise/sqlagent/execution-policy` 对真实候选 SQL 执行只读、单语句、表白名单、租户条件、敏感字段用途、扫描成本和结果行数门禁，返回放行、安全改写、人工复核或拒绝，并生成审计哈希。详见[SQL 执行策略说明](docs/ENTERPRISE_SQL_EXECUTION_POLICY.md)。
+
 <!-- Copyright 2026 上海如静知华信息科技有限公司 -->
