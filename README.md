@@ -54,4 +54,8 @@ npm run dev:demo
 
 `POST /api/enterprise/sqlagent/execution-policy` 对真实候选 SQL 执行只读、单语句、表白名单、租户条件、敏感字段用途、扫描成本和结果行数门禁，返回放行、安全改写、人工复核或拒绝，并生成审计哈希。详见[SQL 执行策略说明](docs/ENTERPRISE_SQL_EXECUTION_POLICY.md)。
 
+## 查询发布与运行时控制
+
+`POST /api/enterprise/sqlagent/query-release` 继续校验验证样例、字段血缘、参数绑定、脱敏、超时、结果上限、扫描规模和审批职责分离，并生成可追踪发布指纹，输出 `APPROVE / REVIEW / REJECT`。详见[查询发布门禁](docs/ENTERPRISE_QUERY_RELEASE.md)。
+
 <!-- Copyright 2026 上海如静知华信息科技有限公司 -->
