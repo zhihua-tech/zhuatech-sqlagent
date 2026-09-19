@@ -9,15 +9,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @RestController
 @RequestMapping("/api/enterprise/sqlagent")
 public class SqlExecutionPolicyController {
     private final SqlExecutionPolicyService service;
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public SqlExecutionPolicyController(SqlExecutionPolicyService service) {
         this.service = service;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PostMapping("/execution-policy")
     public ApiResponse<SqlExecutionPolicyService.PolicyResult> evaluate(
             @Valid @RequestBody SqlExecutionPolicyService.PolicyRequest request) {

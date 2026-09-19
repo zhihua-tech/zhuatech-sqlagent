@@ -12,11 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-/** 将自然语言查询意图转换为可审计的 SQL 执行计划，社区版不连接外部模型。 */
+/**
+ * 将自然语言查询意图转换为可审计的 SQL 执行计划，社区版不连接外部模型。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class SqlPlanningService {
     private static final Pattern SAFE_IDENTIFIER = Pattern.compile("[A-Za-z][A-Za-z0-9_]{0,63}");
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result plan(Request request) {
         int risk = request.writeIntent() ? 60 : 8;
         List<String> controls = new ArrayList<>(List.of("强制租户条件", "默认只读事务", "结果集脱敏"));
@@ -41,10 +48,16 @@ public class SqlPlanningService {
             decision, sql, controls, reasons);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String datasourceCode, @NotBlank @Size(max = 300) String question,
                           @NotEmpty @Size(max = 8) List<@NotBlank String> requestedTables,
                           @Min(0) long estimatedRows, boolean containsSensitiveData,
                           boolean writeIntent, @Min(1) @Max(1000) int resultLimit) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(String datasourceCode, int riskScore, String riskTier, String decision,
                          String sqlPreview, List<String> controls, List<String> reasons) {}
 }

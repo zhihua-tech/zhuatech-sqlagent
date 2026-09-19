@@ -16,9 +16,16 @@ import java.util.ArrayList;
 import java.util.HexFormat;
 import java.util.List;
 
-/** 将通过语法门禁的查询进一步纳入审批、血缘、脱敏和运行时限额。 */
+/**
+ * 将通过语法门禁的查询进一步纳入审批、血缘、脱敏和运行时限额。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class SqlQueryReleaseService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public ReleaseResult release(ReleaseRequest request) {
         List<String> blockers = new ArrayList<>();
         List<String> reviewReasons = new ArrayList<>();
@@ -58,12 +65,18 @@ public class SqlQueryReleaseService {
         return result(Decision.APPROVE, fingerprint, blockers, reviewReasons, controls);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private ReleaseResult result(Decision decision, String fingerprint, List<String> blockers,
                                  List<String> reviewReasons, List<String> controls) {
         return new ReleaseResult(decision, fingerprint, List.copyOf(blockers),
                 List.copyOf(reviewReasons), List.copyOf(controls));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private String fingerprint(String value) {
         try {
             return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256")
@@ -73,6 +86,9 @@ public class SqlQueryReleaseService {
         }
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record ReleaseRequest(@NotBlank String queryId, @NotBlank String normalizedSql,
             @NotBlank String schemaVersion, @NotNull PolicyDecision policyDecision,
             @NotBlank String requester, @NotBlank String approver, String approvalTicket,
@@ -82,8 +98,17 @@ public class SqlQueryReleaseService {
             @PositiveOrZero long estimatedResultRows, @Positive long maxResultRows,
             @PositiveOrZero long estimatedScanRows, @Positive long maxScanRows) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record ReleaseResult(Decision decision, String releaseFingerprint,
             List<String> blockers, List<String> reviewReasons, List<String> runtimeControls) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum PolicyDecision { ALLOW, REWRITE_REQUIRED, REVIEW, DENY }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Decision { APPROVE, REVIEW, REJECT }
 }

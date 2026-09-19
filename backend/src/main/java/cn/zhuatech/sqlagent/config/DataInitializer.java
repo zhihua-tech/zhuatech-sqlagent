@@ -1,7 +1,13 @@
 /* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 package cn.zhuatech.sqlagent.config;
 import cn.zhuatech.sqlagent.model.*; import cn.zhuatech.sqlagent.repository.*; import org.springframework.boot.CommandLineRunner; import org.springframework.context.annotation.*; import org.springframework.security.crypto.password.PasswordEncoder; import java.time.LocalDate; import java.util.List;
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Configuration public class DataInitializer {
+ /**
+  * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+  */
  @Bean CommandLineRunner seed(OperatingUnitRepository units,WorkRecordRepository tasks,ResourceRegisterRepository resources,ReviewRecordRepository reviews,UserRepository users,PasswordEncoder encoder){return args->{if(units.count()>0)return;
  var u1=units.save(new OperatingUnit("DATA-GOV","查询治理组","集团数据平台",240));var u2=units.save(new OperatingUnit("ANALYTICS","经营分析组","财务数据域",160));var u3=units.save(new OperatingUnit("DATA-SEC","数据安全组","治理中心",96));
  var t1=tasks.save(new WorkRecord("SQL-260817-086","AR-SUMMARY","华东区本月回款趋势",u2,8,7,1,LocalDate.now(),WorkRecord.Status.RUNNING,"ar_summary+customer"));var t2=tasks.save(new WorkRecord("SQL-260817-082","ORDER-FACT","渠道订单取消原因",u1,6,6,0,LocalDate.now(),WorkRecord.Status.COMPLETED,"order_fact"));var t3=tasks.save(new WorkRecord("SQL-260817-079","MARGIN-MART","产品毛利异常门店",u2,9,5,2,LocalDate.now().plusDays(1),WorkRecord.Status.RUNNING,"margin_mart+store"));var t4=tasks.save(new WorkRecord("SQL-260817-071","CUSTOMER-MDM","客户等级更新意图",u3,5,2,3,LocalDate.now(),WorkRecord.Status.RELEASED,"customer_master"));

@@ -1,10 +1,25 @@
 /* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 package cn.zhuatech.sqlagent;
 import org.junit.jupiter.api.*; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc; import org.springframework.boot.test.context.SpringBootTest; import org.springframework.http.MediaType; import org.springframework.test.web.servlet.MockMvc; import java.util.regex.*; import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*; import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @SpringBootTest @AutoConfigureMockMvc class SqlAgentApiIntegrationTests { @Autowired MockMvc mvc; private String token;
+ /**
+  * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+  */
  @BeforeEach void login()throws Exception{String json=mvc.perform(post("/api/auth/login").contentType(MediaType.APPLICATION_JSON).content("{\"username\":\"operator\",\"password\":\"Demo@2026\"}")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();Matcher m=Pattern.compile("\\\"token\\\":\\\"([^\\\"]+)\\\"").matcher(json);if(!m.find())throw new AssertionError("token missing");token=m.group(1);}
+ /**
+  * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+  */
  @Test void operatorCanPlanQuery()throws Exception{mvc.perform(post("/api/ai/sql/plan").header("Authorization","Bearer "+token).contentType(MediaType.APPLICATION_JSON).content("{\"datasourceCode\":\"DW\",\"question\":\"查询客户回款\",\"requestedTables\":[\"receivable_summary\"],\"estimatedRows\":8000,\"containsSensitiveData\":true,\"writeIntent\":false,\"resultLimit\":200}")).andExpect(status().isOk()).andExpect(jsonPath("$.data.decision").value("REVIEW"));}
+ /**
+  * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+  */
  @Test void operatorCanApplySqlExecutionPolicy()throws Exception{mvc.perform(post("/api/enterprise/sqlagent/execution-policy").header("Authorization","Bearer "+token).contentType(MediaType.APPLICATION_JSON).content("{\"queryId\":\"Q-100\",\"sql\":\"SELECT id FROM orders WHERE tenant_id = :tenantId\",\"allowedTables\":[\"orders\"],\"tenantFilterRequired\":true,\"tenantColumn\":\"tenant_id\",\"tenantParameterName\":\"tenantId\",\"maxResultRows\":500,\"estimatedScanRows\":1000,\"maxScanRows\":1000000,\"sensitiveColumnsRequested\":false,\"purposeApproved\":true,\"explainApproved\":false}"))
   .andExpect(status().isOk()).andExpect(jsonPath("$.data.decision").value("REWRITE_REQUIRED"))
   .andExpect(jsonPath("$.data.safeSql").value("SELECT id FROM orders WHERE tenant_id = :tenantId LIMIT 500"));}
+ /**
+  * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+  */
  @Test void anonymousRequestIsDenied()throws Exception{mvc.perform(post("/api/ai/sql/plan").contentType(MediaType.APPLICATION_JSON).content("{}")).andExpect(status().isForbidden());}}

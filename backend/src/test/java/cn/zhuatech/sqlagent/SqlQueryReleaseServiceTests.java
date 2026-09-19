@@ -5,9 +5,15 @@ import cn.zhuatech.sqlagent.service.SqlQueryReleaseService;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 class SqlQueryReleaseServiceTests {
     private final SqlQueryReleaseService service = new SqlQueryReleaseService();
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test void approvesGovernedQueryRelease() {
         var result = service.release(request(SqlQueryReleaseService.PolicyDecision.ALLOW,
                 "analyst", "data-owner", false, true, true, 1_000, 20_000));
@@ -16,6 +22,9 @@ class SqlQueryReleaseServiceTests {
         assertThat(result.runtimeControls()).hasSize(3);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test void routesIncompleteSeparationAndLargeScanToReview() {
         var result = service.release(request(SqlQueryReleaseService.PolicyDecision.REVIEW,
                 "analyst", "analyst", true, true, true, 1_000, 2_000_000));
@@ -23,6 +32,9 @@ class SqlQueryReleaseServiceTests {
         assertThat(result.reviewReasons()).hasSize(4);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test void rejectsUnvalidatedOrUnmaskedQuery() {
         var result = service.release(request(SqlQueryReleaseService.PolicyDecision.DENY,
                 "analyst", "owner", false, false, false, 50_000, 100));
@@ -31,6 +43,9 @@ class SqlQueryReleaseServiceTests {
                 "敏感结果脱敏未验证", "预计结果行数超过发布上限");
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private SqlQueryReleaseService.ReleaseRequest request(SqlQueryReleaseService.PolicyDecision policyDecision,
             String requester, String approver, boolean scheduled, boolean validationPassed,
             boolean maskingVerified, long resultRows, long scanRows) {

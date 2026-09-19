@@ -22,7 +22,11 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/** 对候选 SQL 执行只读、单语句、表白名单、租户、敏感字段、成本和行数策略。 */
+/**
+ * 对候选 SQL 执行只读、单语句、表白名单、租户、敏感字段、成本和行数策略。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class SqlExecutionPolicyService {
     private static final Pattern FORBIDDEN = Pattern.compile(
@@ -31,6 +35,9 @@ public class SqlExecutionPolicyService {
             "(?i)\\b(?:from|join)\\s+([a-zA-Z][a-zA-Z0-9_.]{0,127})");
     private static final Pattern FINAL_LIMIT = Pattern.compile("(?i)\\blimit\\s+(\\d+)\\s*$");
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public PolicyResult evaluate(PolicyRequest request) {
         String sql = request.sql().trim();
         String noTrailingSemicolon = sql.replaceFirst(";\\s*$", "").trim();
@@ -85,6 +92,9 @@ public class SqlExecutionPolicyService {
         return result(Decision.ALLOW, normalized, queryHash, referencedTables, blockers, actions);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private boolean hasTenantPredicate(String lowerSql, PolicyRequest request) {
         String column = Pattern.quote(request.tenantColumn().toLowerCase(Locale.ROOT));
         String parameter = Pattern.quote(request.tenantParameterName().toLowerCase(Locale.ROOT));
@@ -92,6 +102,9 @@ public class SqlExecutionPolicyService {
                 .matcher(lowerSql).find();
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private Set<String> referencedTables(String sql) {
         Set<String> tables = new LinkedHashSet<>();
         Matcher matcher = TABLE.matcher(sql);
@@ -99,11 +112,17 @@ public class SqlExecutionPolicyService {
         return tables;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private String enforceLimit(String sql, int maxRows) {
         Matcher matcher = FINAL_LIMIT.matcher(sql);
         return matcher.find() ? matcher.replaceFirst("LIMIT " + maxRows) : sql + " LIMIT " + maxRows;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private String hash(String sql) {
         try {
             return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256")
@@ -113,12 +132,18 @@ public class SqlExecutionPolicyService {
         }
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private PolicyResult result(Decision decision, String safeSql, String queryHash,
                                 Set<String> tables, List<String> blockers, List<String> actions) {
         return new PolicyResult(decision, safeSql, queryHash, List.copyOf(tables),
                 List.copyOf(blockers), List.copyOf(actions));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record PolicyRequest(
             @NotBlank String queryId,
             @NotBlank @Size(max = 5000) String sql,
@@ -134,9 +159,15 @@ public class SqlExecutionPolicyService {
             boolean explainApproved
     ) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record PolicyResult(Decision decision, String safeSql, String queryHash,
                                List<String> referencedTables, List<String> blockers,
                                List<String> actions) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Decision { ALLOW, REWRITE_REQUIRED, REVIEW, DENY }
 }
