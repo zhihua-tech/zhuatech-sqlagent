@@ -1,5 +1,7 @@
 # ZhuaTech SQLAgent
 
+[简体中文](README.md) | [English](README.en.md)
+
 企业数据查询智能体社区源码版：把自然语言问题转换为带权限门禁、扫描限制、SQL 预览和审计证据的安全查询计划。
 
 [![Java 21](https://img.shields.io/badge/Java-21-245b82)](backend/pom.xml) [![Spring Boot](https://img.shields.io/badge/Spring_Boot-4-2f6f9e)](backend/pom.xml) [![Vue 3](https://img.shields.io/badge/Vue-3-42b883)](frontend/package.json) [![MySQL 8](https://img.shields.io/badge/MySQL-8-4479a1)](compose.yaml) [![License](https://img.shields.io/badge/license-personal_noncommercial-c4873b)](LICENSE)
