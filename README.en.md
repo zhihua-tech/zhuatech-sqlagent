@@ -12,6 +12,12 @@ This repository is intended for learning, technical evaluation, and non-commerci
 
 **Search topics:** enterprise sqlagent, self-hosted sqlagent, Java Spring Boot enterprise software, digital transformation.
 
+
+## Update: Read-only query result and scan budgets
+
+This release adds an authenticated, structured batch workspace at `/operations.html`, backed by project-specific deterministic calculations, explicit validation, explainable decisions, and CSV/JSON exports. Decimal values are preserved exactly; no external model call is made.
+
+Results are **read-only decision support**, not approvals or posted transactions. The feature does not send payments, sign contracts, destroy records, or control devices, and does not certify the whole application for production. See [the calculation contract and API guide](docs/OPERATIONS-REVIEW.md).
 ## Enterprise Use
 
 - **Primary users:** Business operators, domain reviewers, AI teams, and administrators.
