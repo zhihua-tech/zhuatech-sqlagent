@@ -1,0 +1,79 @@
+[
+  {
+    "patch": {},
+    "expected": {
+      "decision": "PASS",
+      "estimatedResultBytes": "#200000"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "PASS",
+      "estimatedResultBytes": "#200000"
+    }
+  },
+  {
+    "patch": {
+      "readOnly": "NO"
+    },
+    "expected": {
+      "decision": "HOLD"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "PASS",
+      "estimatedResultBytes": "#200000"
+    }
+  },
+  {
+    "patch": {
+      "parameterized": "NO"
+    },
+    "expected": {
+      "decision": "HOLD"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "PASS",
+      "estimatedResultBytes": "#200000"
+    }
+  },
+  {
+    "patch": {
+      "scanRows": "200001"
+    },
+    "expected": {
+      "decision": "HOLD"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "PASS",
+      "estimatedResultBytes": "#200000"
+    }
+  },
+  {
+    "patch": {
+      "resultRows": "5001"
+    },
+    "expected": {
+      "decision": "HOLD"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "PASS",
+      "estimatedResultBytes": "#200000"
+    }
+  },
+  {
+    "patch": {
+      "resultRows": "5000"
+    },
+    "expected": {
+      "decision": "PASS"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "PASS",
+      "estimatedResultBytes": "#200000"
+    }
+  }
+]

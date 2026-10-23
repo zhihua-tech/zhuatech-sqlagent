@@ -1,0 +1,6 @@
+{
+  "patch": {
+    "readOnly": "NO"
+  },
+  "description": "数据库只读事务改为NO"
+}
